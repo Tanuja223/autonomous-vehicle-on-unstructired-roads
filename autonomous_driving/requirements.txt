@@ -1,0 +1,72 @@
+# ============================================================
+# End-to-End Autonomous Driving System
+# requirements.txt
+# ============================================================
+
+# Core Python
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.10.0
+
+# Deep Learning
+torch>=2.1.0
+torchvision>=0.16.0
+torchaudio>=2.1.0
+
+# Computer Vision
+opencv-python>=4.8.0
+opencv-python-headless>=4.8.0
+Pillow>=10.0.0
+
+# YOLO (Ultralytics)
+ultralytics>=8.1.0
+- 
+# Reinforcement Learning
+stable-baselines3>=2.2.0
+gymnasium>=0.29.0
+
+# Visualization & Dashboard
+streamlit>=1.28.0
+streamlit-webrtc>=0.47.0
+plotly>=5.18.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+altair>=5.1.0
+
+# Path Planning
+networkx>=3.1
+
+# Simulation (CARLA Python Client)
+# Install separately: pip install carla (requires CARLA server)
+# carla>=0.9.15
+
+# Monitoring & Logging
+tensorboard>=2.14.0
+wandb>=0.16.0
+loguru>=0.7.0
+
+# Configuration
+pyyaml>=6.0
+python-dotenv>=1.0.0
+omegaconf>=2.3.0
+
+# Data Processing
+scikit-learn>=1.3.0
+albumentations>=1.3.0
+
+# Utilities
+tqdm>=4.65.0
+psutil>=5.9.0
+rich>=13.0.0
+click>=8.1.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Async & Networking
+aiohttp>=3.8.0
+websockets>=11.0
+
+# Image Processing
+imageio>=2.31.0

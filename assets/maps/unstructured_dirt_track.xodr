@@ -1,0 +1,50 @@
+<?xml version="1.0" standalone="yes"?>
+<OpenDRIVE>
+  <header revMajor="1" revMinor="4" name="UnstructuredDirtTrack" version="1.00"
+          date="2026-10-26" north="20" south="-20" east="500" west="0"
+          vendor="Autonomous Driving Unstructured Road System"/>
+
+  <road name="Unstructured Rural Dirt Track" length="500.0" id="1" junction="-1">
+    <link/>
+    <type s="0.0" type="rural">
+      <speed max="30" unit="km/h"/>
+    </type>
+
+    <planView>
+      <geometry s="0.0" x="0.0" y="0.0" hdg="0.0" length="500.0">
+        <line/>
+      </geometry>
+    </planView>
+
+    <elevationProfile>
+      <!-- Mild undulating rural dirt road dips and crests -->
+      <elevation s="0.0" a="0.0" b="0.005" c="-0.00002" d="0.0"/>
+      <elevation s="200.0" a="0.3" b="-0.004" c="0.00001" d="0.0"/>
+      <elevation s="350.0" a="0.1" b="0.002" c="0.0" d="0.0"/>
+    </elevationProfile>
+
+    <lateralProfile/>
+
+    <lanes>
+      <laneOffset s="0.0" a="0.0" b="0.0" c="0.0" d="0.0"/>
+
+      <laneSection s="0.0">
+        <left/>
+
+        <center>
+          <lane id="0" type="none" level="false">
+            <link/>
+          </lane>
+        </center>
+
+        <right>
+          <!-- Single wide unstructured dirt surface: NO roadMark elements (no lane markings) -->
+          <lane id="-1" type="driving" level="false">
+            <link/>
+            <width sOffset="0.0" a="12.0" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+        </right>
+      </laneSection>
+    </lanes>
+  </road>
+</OpenDRIVE>

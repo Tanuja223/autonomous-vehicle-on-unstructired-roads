@@ -1,0 +1,132 @@
+# ============================================================
+# configs/config.yaml — Central Configuration
+# ============================================================
+
+project:
+  name: "Autonomous Driving System"
+  version: "1.0.0"
+  author: "AI Autonomous Driving Team"
+
+# ── CARLA Simulator ─────────────────────────────────────────
+carla:
+  host: "localhost"
+  port: 2000
+  timeout: 10.0
+  map: "Town03"
+  delta_seconds: 0.05          # Physics time-step (20 Hz)
+  synchronous_mode: true
+  no_rendering_mode: false
+  num_npc_vehicles: 30
+  num_npc_pedestrians: 20
+  spawn_point_index: 0         # Ego vehicle spawn
+
+# ── Camera / Sensor ─────────────────────────────────────────
+sensor:
+  camera:
+    width: 1280
+    height: 720
+    fov: 110
+    fps: 30
+  depth_camera:
+    width: 640
+    height: 480
+    fov: 90
+  lidar:
+    channels: 64
+    range: 85.0
+    points_per_second: 1120000
+    rotation_frequency: 20
+
+# ── Perception ───────────────────────────────────────────────
+perception:
+  yolo:
+    model_path: "models/yolov11_traffic.pt"
+    confidence_threshold: 0.45
+    iou_threshold: 0.50
+    img_size: 640
+    device: "cuda"              # "cpu" or "cuda"
+    classes:
+      - car
+      - truck
+      - bus
+      - motorcycle
+      - pedestrian
+      - bicycle
+      - traffic_light
+      - stop_sign
+  lane:
+    canny_low: 50
+    canny_high: 150
+    hough_threshold: 40
+    hough_min_line_len: 80
+    hough_max_line_gap: 20
+    roi_height_ratio: 0.55      # Top of ROI as fraction of frame height
+  depth:
+    model: "DPT_Large"          # MiDaS model variant
+    max_distance: 80.0          # metres
+
+# ── Path Planning ────────────────────────────────────────────
+planning:
+  global:
+    algorithm: "astar"
+    waypoint_interval: 2.0      # metres between waypoints
+  local:
+    lookahead_distance: 10.0    # metres
+    max_lateral_offset: 0.8     # metres from lane centre
+    obstacle_clearance: 2.5     # metres around obstacles
+
+# ── Control ──────────────────────────────────────────────────
+control:
+  pid_steering:
+    Kp: 0.9
+    Ki: 0.002
+    Kd: 0.3
+    max_steer: 1.0
+    min_steer: -1.0
+  pid_throttle:
+    Kp: 0.3
+    Ki: 0.01
+    Kd: 0.05
+    max_throttle: 0.75
+    max_brake: 0.5
+  target_speed: 30              # km/h default cruise speed
+  emergency_brake_distance: 4.0 # metres
+
+# ── Reinforcement Learning ───────────────────────────────────
+rl:
+  algorithm: "PPO"
+  policy: "CnnPolicy"
+  total_timesteps: 500000
+  n_steps: 2048
+  batch_size: 64
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  ent_coef: 0.01
+  learning_rate: 3.0e-4
+  max_episode_steps: 3000
+  save_freq: 10000
+  log_dir: "results/rl_logs"
+  model_save_path: "models/ppo_agent"
+  reward:
+    lane_keeping: 1.0
+    destination_progress: 2.0
+    collision: -5.0
+    lane_departure: -3.0
+    accident: -10.0
+    speed_compliance: 0.5
+    smooth_driving: 0.2
+
+# ── Dashboard ────────────────────────────────────────────────
+dashboard:
+  refresh_interval_ms: 100
+  map_zoom: 16
+  show_bev: true               # Bird's eye view
+  history_window: 200          # Data-point rolling window
+
+# ── Logging ──────────────────────────────────────────────────
+logging:
+  level: "INFO"
+  log_file: "results/run.log"
+  tensorboard_dir: "results/tb_logs"

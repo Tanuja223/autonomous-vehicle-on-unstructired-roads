@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <title>Autonomous Vehicle Navigation</title>
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Autonomous Vehicle Navigation</h1>
+
+    <div id="map"></div>
+
+    <div class="controls">
+
+        <input
+            type="text"
+            id="destination"
+            placeholder="Enter destination"
+        >
+
+        <button onclick="searchDestination()">
+            Search Destination
+        </button>
+
+    </div>
+
+    <div id="result">
+        Destination not selected
+    </div>
+
+    <!-- Leaflet -->
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+    <!-- Our JavaScript -->
+    <script src="map.js?v=2"></script>
+
+</body>
+</html>

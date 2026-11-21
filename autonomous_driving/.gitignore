@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Models & large files
+models/*.pt
+models/*.zip
+datasets/
+
+# Results & logs
+results/tb_logs/
+results/rl_logs/
+results/*.log
+results/run.log
+
+# Environment
+.env
+.python-version
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+
+# CARLA
+*.egg
+
+# OS
+.DS_Store
+Thumbs.db
